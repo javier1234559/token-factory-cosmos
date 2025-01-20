@@ -31,10 +31,6 @@ const (
 	// TODO: Determine the simulation weight value
 	defaultWeightMsgUpdateDenom int = 100
 
-	opWeightMsgDeleteDenom = "op_weight_msg_denom"
-	// TODO: Determine the simulation weight value
-	defaultWeightMsgDeleteDenom int = 100
-
 	opWeightMsgMintAndSendTokens = "op_weight_msg_mint_and_send_tokens"
 	// TODO: Determine the simulation weight value
 	defaultWeightMsgMintAndSendTokens int = 100
@@ -98,17 +94,6 @@ func (am AppModule) WeightedOperations(simState module.SimulationState) []simtyp
 		tokenfactorysimulation.SimulateMsgUpdateDenom(am.accountKeeper, am.bankKeeper, am.keeper),
 	))
 
-	var weightMsgDeleteDenom int
-	simState.AppParams.GetOrGenerate(opWeightMsgDeleteDenom, &weightMsgDeleteDenom, nil,
-		func(_ *rand.Rand) {
-			weightMsgDeleteDenom = defaultWeightMsgDeleteDenom
-		},
-	)
-	operations = append(operations, simulation.NewWeightedOperation(
-		weightMsgDeleteDenom,
-		tokenfactorysimulation.SimulateMsgDeleteDenom(am.accountKeeper, am.bankKeeper, am.keeper),
-	))
-
 	var weightMsgMintAndSendTokens int
 	simState.AppParams.GetOrGenerate(opWeightMsgMintAndSendTokens, &weightMsgMintAndSendTokens, nil,
 		func(_ *rand.Rand) {
@@ -156,14 +141,6 @@ func (am AppModule) ProposalMsgs(simState module.SimulationState) []simtypes.Wei
 			},
 		),
 		simulation.NewWeightedProposalMsg(
-			opWeightMsgDeleteDenom,
-			defaultWeightMsgDeleteDenom,
-			func(r *rand.Rand, ctx sdk.Context, accs []simtypes.Account) sdk.Msg {
-				tokenfactorysimulation.SimulateMsgDeleteDenom(am.accountKeeper, am.bankKeeper, am.keeper)
-				return nil
-			},
-		),
-		simulation.NewWeightedProposalMsg(
 			opWeightMsgMintAndSendTokens,
 			defaultWeightMsgMintAndSendTokens,
 			func(r *rand.Rand, ctx sdk.Context, accs []simtypes.Account) sdk.Msg {
@@ -179,6 +156,5 @@ func (am AppModule) ProposalMsgs(simState module.SimulationState) []simtypes.Wei
 				return nil
 			},
 		),
-		// this line is used by starport scaffolding # simapp/module/OpMsg
 	}
 }

@@ -15,7 +15,6 @@ func (k msgServer) MintAndSendTokens(goCtx context.Context, msg *types.MsgMintAn
 	ctx := sdk.UnwrapSDKContext(goCtx)
 
 	// Check if the value exists
-	// Check if the value exists
 	valFound, isFound := k.GetDenom(
 		ctx,
 		msg.Denom,
