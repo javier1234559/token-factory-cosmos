@@ -7,3 +7,6 @@ release/
 *.dot
 *.log
 *.ign
+
+
+data/ # ignore data folder cus is the data of the node

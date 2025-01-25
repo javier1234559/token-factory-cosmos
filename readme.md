@@ -42,6 +42,22 @@ curl https://get.ignite.com/username/tokenfactory@latest! | sudo bash
 ```
 `username/tokenfactory` should match the `username` and `repo_name` of the Github repository to which the source code was pushed. Learn more about [the install process](https://github.com/allinbits/starport-installer).
 
+
+§
+  Blockchain is running
+  
+  👤 alice's account address: cosmos1key8484v32wl5q979jdcya3pkey5qt8s5fyfwx
+  👤 bob's account address: cosmos1ly7t5hk93kwef674l7w54cn6dj77xndepcwr8d
+  
+  🌍 Tendermint node: http://0.0.0.0:26657
+  🌍 Blockchain API: http://0.0.0.0:1317
+  🌍 Token faucet: http://0.0.0.0:4500
+  
+  ⋆ Data directory: /Users/mac/.tokenfactory
+  ⋆ App binary: /Users/mac/go/bin/tokenfactoryd
+  
+  §
+
 ## Learn more
 
 - [Ignite CLI](https://ignite.com/cli)
